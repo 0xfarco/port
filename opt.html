@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>opt</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+    body {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 18px;
+      color: #111;
+      background-color: white;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .projects-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      max-width: 800px;
+      width: 100%;
+      text-align: left;
+      border: 2px solid #111;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .projects div {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .back-link {
+      margin-top: 30px;
+      font-size: 20px;
+    }
+
+    a {
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: #ff5733;
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="opt">
+    <h1>opt</h1>
+
+    <!-- Achievements Section -->
+    <h2>Achievements</h2>
+    <p>
+      - Achieved the highest score in the IEEE Launchpad 2024. <br>
+      - Winner of the IEEE Launchpad CTF 2024. <br>
+      - Winner of the μLearn illuμnate CTF 2024. <br>
+    </p>
+
+    <!-- Projects Section -->
+    <h2>Projects</h2>
+    <div class="projects-container">
+      <div class="projects" id="projects-list"></div>
+    </div>
+
+    <!-- Back Link -->
+    <div class="back-link">
+      <a href="index.html">&larr; ../home</a>
+    </div>
+  </div>
+
+  <script>
+    async function loadProjects() {
+      const response = await fetch('projects.csv');
+      const data = await response.text();
+      const lines = data.split('\n');
+      let html = '';
+      
+      for (let line of lines) {
+        const [name, url, description] = line.split(',');
+        if (name && url && description) {
+          html += `<div><a href="${url}" target="_blank">${name}</a></div><div>${description}</div>`;
+        }
+      }
+      
+      document.getElementById('projects-list').innerHTML = html;
+    }
+    
+    loadProjects();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,9 @@
+name,description,link
+Shellium,Simple Unix shell,https://github.com/0xfarco/shellium
+Pica,Simple image viewer,https://github.com/0xfarco/pica
+Shadex,Prints images in terminal using term256 colors,https://github.com/0xfarco/shadex
+Virtualc3,Runs assembled programs in LC3 VM,https://github.com/0xfarco/virtualc3
+Zoomer,Screen magnifier for Linux,https://github.com/0xfarco/zoomer
+Snortify,Snort rule generator in Bash,https://github.com/0xfarco/snortify
+Aestego,AES-encrypted LSB steganography,https://github.com/0xfarco/aestego
+
