@@ -1,141 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>opt</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
-    body {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 18px;
-      color: #111;
-      background-color: white;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #f8f8f2;
+            color: #282a36;
+            text-align: center;
+            padding: 20px;
+        }
 
-    h1 {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 36px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
 
-    h2 {
-      font-size: 28px;
-      margin-top: 30px;
-      margin-bottom: 10px;
-    }
+        h1 {
+            font-size: 24px;
+        }
 
-    p {
-      max-width: 800px;
-      text-align: center;
-      line-height: 1.6;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-    .projects-container {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
+        th, td {
+            padding: 10px;
+            border: 1px solid #44475a;
+        }
 
-    .projects {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 20px;
-      max-width: 800px;
-      width: 100%;
-      text-align: left;
-      border: 2px solid #111;
-      padding: 10px;
-      border-radius: 10px;
-    }
+        th {
+            background-color: #44475a;
+            color: #f8f8f2;
+        }
 
-    .projects div {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
+        td a {
+            text-decoration: none;
+            color: #6272a4;
+            font-weight: bold;
+        }
 
-    .back-link {
-      margin-top: 30px;
-      font-size: 20px;
-    }
+        td a:hover {
+            color: #ff79c6;
+        }
 
-    a {
-      color: #111;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #44475a;
+            text-decoration: none;
+        }
 
-    a:hover {
-      color: #ff5733;
-    }
-
-    @media screen and (max-width: 480px) {
-      h1 {
-        font-size: 28px;
-      }
-
-      h2 {
-        font-size: 24px;
-      }
-
-      .projects {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+        .back-link:hover {
+            color: #ff5555;
+        }
+    </style>
 </head>
 <body>
-  <div class="opt">
-    <h1>opt</h1>
-
-    <!-- Achievements Section -->
-    <h2>Achievements</h2>
-    <p>
-      - Achieved the highest score in the IEEE Launchpad 2024. <br>
-      - Winner of the IEEE Launchpad CTF 2024. <br>
-      - Winner of the μLearn illuμnate CTF 2024. <br>
-    </p>
-
-    <!-- Projects Section -->
-    <h2>Projects</h2>
-    <div class="projects-container">
-      <div class="projects" id="projects-list"></div>
+    <div class="container">
+        <h1>Projects</h1>
+        <div id="projects-container">
+            <!-- Projects table will be inserted here -->
+        </div>
+        <a href="home.html" class="back-link">← ../home</a>
     </div>
 
-    <!-- Back Link -->
-    <div class="back-link">
-      <a href="index.html">&larr; ../home</a>
-    </div>
-  </div>
-
-  <script>
-    async function loadProjects() {
-      const response = await fetch('projects.csv');
-      const data = await response.text();
-      const lines = data.split('\n');
-      let html = '';
-      
-      for (let line of lines) {
-        const [name, url, description] = line.split(',');
-        if (name && url && description) {
-          html += `<div><a href="${url}" target="_blank">${name}</a></div><div>${description}</div>`;
-        }
-      }
-      
-      document.getElementById('projects-list').innerHTML = html;
-    }
-    
-    loadProjects();
-  </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("projects.csv")
+                .then(response => response.text())
+                .then(data => {
+                    const rows = data.trim().split("\n").map(row => row.split(","));
+                    let tableHTML = `<table>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                        </tr>`;
+                    for (let i = 1; i < rows.length; i++) { // Skip header row
+                        let [name, link, description] = rows[i];
+                        if (name && link && description) {
+                            tableHTML += `<tr>
+                                            <td><a href="${link.trim()}" target="_blank">${name.trim()}</a></td>
+                                            <td>${description.trim()}</td>
+                                          </tr>`;
+                        }
+                    }
+                    tableHTML += `</table>`;
+                    document.getElementById("projects-container").innerHTML = tableHTML;
+                })
+                .catch(error => console.error("Error loading projects:", error));
+        });
+    </script>
 </body>
 </html>
 
