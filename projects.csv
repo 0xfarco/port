@@ -1,11 +1,2 @@
-name,link,description
-Shellium,https://github.com/0xfarco/shellium,Simple Unix shell
-Pica,https://github.com/0xfarco/pica,Simple image viewer
-Shadex,https://github.com/0xfarco/shadex,Prints images in terminal using term256 colors
-Virtualc3,https://github.com/0xfarco/virtualc3,Runs assembled programs in LC3 VM
-Zoomer,https://github.com/0xfarco/zoomer,Screen magnifier for Linux
-Snortify,https://github.com/0xfarco/snortify,Snort rule generator in Bash
-Aestego,https://github.com/0xfarco/aestego,AES-encrypted LSB steganography
-Zoomer,https://github.com/0xfarco/zoomer,Screen magnifier for Linux
-Snortify,https://github.com/0xfarco/snortify,Snort rule generator in Bash
-Aesfftego,https://github.com/0xfarco/aesfftego,AES-encrypted LSB steganography
+Project 1, This is the description of project 1, GitHub, https://github.com/project1, Live, https://project1.com
+Project 2, Description of project 2, GitHub, https://github.com/project2
