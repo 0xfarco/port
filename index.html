@@ -1,73 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background-color: #f8f8f2;
-            color: #282a36;
-            text-align: center;
-            padding: 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>opt</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+    body {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 18px;
+      color: #111;
+      background-color: white;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-        }
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        h1 {
-            font-size: 24px;
-        }
+    h2 {
+      font-size: 28px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+    p {
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.6;
+    }
 
-        th, td {
-            padding: 10px;
-            border: 1px solid #44475a;
-        }
+    .badges {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
 
-        th {
-            background-color: #44475a;
-            color: #f8f8f2;
-        }
+    .badges img {
+      width: 300px; /* Adjust size as needed */
+      margin: 10px;
+    }
 
-        td a {
-            text-decoration: none;
-            color: #6272a4;
-            font-weight: bold;
-        }
+    a {
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        td a:hover {
-            color: #ff79c6;
-        }
+    a:hover {
+      color: #ff5733; /* Hover color */
+    }
 
-        .back-link {
-            display: block;
-            margin-top: 20px;
-            font-size: 18px;
-            color: #44475a;
-            text-decoration: none;
-        }
+    .back-link {
+      margin-top: 30px;
+      font-size: 20px;
+    }
 
-        .back-link:hover {
-            color: #ff5555;
-        }
-    </style>
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .badges img {
+        width: 150px; /* Adjust for smaller screens */
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="opt">
+    <h1>opt</h1>
+
+    <!-- Achievements Section -->
+    <h2>Achievements</h2>
+    <p>
+      - Achieved the highest score in the IEEE Launchpad 2024. <br>
+      - Winner of the IEEE Launchpad CTF 2024. <br>
+      - Winner of the μLearn illuμnate CTF 2024. <br>
+    </p>
+
     <div class="container">
         <h1>Projects</h1>
         <div id="projects-container">
             <!-- Projects table will be inserted here -->
         </div>
-        <a href="home.html" class="back-link">← ../home</a>
     </div>
 
     <script>
@@ -96,6 +131,11 @@
                 .catch(error => console.error("Error loading projects:", error));
         });
     </script>
+
+    <!-- Back Link -->
+    <div class="back-link">
+      <a href="index.html">&larr; ../home</a>
+    </div>
+  </div>
 </body>
 </html>
-
