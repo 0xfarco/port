@@ -104,61 +104,49 @@
       - Winner of the μLearn illuμnate CTF 2024. <br>
     </p>
 
-    <!-- Projects Section -->
-    <div class="container">
-      <h2>Projects</h2>
-      <div id="projects-container">
-        <!-- Projects table will be inserted here -->
-      </div>
-    </div>
+    <!-- Projects Table -->
+    <h2>Projects</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Links</th>
+      </tr>
+
+      <!-- Project 1 -->
+      <tr>
+        <td>Project 1</td>
+        <td>This is the description of project 1.</td>
+        <td>
+          <a href="https://github.com/project1" target="_blank">GitHub</a> | 
+          <a href="https://project1.com" target="_blank">Live</a>
+        </td>
+      </tr>
+
+      <!-- Project 2 -->
+      <tr>
+        <td>Project 2</td>
+        <td>Description of project 2.</td>
+        <td>
+          <a href="https://github.com/project2" target="_blank">GitHub</a>
+        </td>
+      </tr>
+
+      <!-- Project 3 -->
+      <tr>
+        <td>Project 3</td>
+        <td>Description of project 3 with no live link.</td>
+        <td>
+          <a href="https://github.com/project3" target="_blank">GitHub</a>
+        </td>
+      </tr>
+    </table>
 
     <!-- Back Link -->
     <div class="back-link">
       <a href="index.html">&larr; ../home</a>
     </div>
   </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      fetch("projects.csv")
-        .then(response => response.text())
-        .then(data => {
-          const rows = data.trim().split("\n").map(row => row.split(","));
-          let tableHTML = `<table>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Links</th>
-                            </tr>`;
-          
-          for (let i = 1; i < rows.length; i++) { // Skip header row
-            let row = rows[i];
-            let name = row[0].trim();
-            let description = row[1].trim();
-            let linksHTML = '';
-
-            // Process the text-link pairs dynamically
-            for (let j = 2; j < row.length; j += 2) { // Step by 2 to get text and link pairs
-              let text = row[j].trim();
-              let link = row[j + 1] ? row[j + 1].trim() : '';
-              if (text && link) {
-                linksHTML += `<a href="${link}" target="_blank">${text}</a> `;
-              }
-            }
-
-            // Add a new row for each project
-            tableHTML += `<tr>
-                            <td>${name}</td>
-                            <td>${description}</td>
-                            <td>${linksHTML}</td>
-                          </tr>`;
-          }
-
-          tableHTML += `</table>`;
-          document.getElementById("projects-container").innerHTML = tableHTML;
-        })
-        .catch(error => console.error("Error loading projects:", error));
-    });
-  </script>
 </body>
 </html>
+
