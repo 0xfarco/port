@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #f8f8f2;
+            color: #282a36;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #44475a;
+        }
+
+        th {
+            background-color: #44475a;
+            color: #f8f8f2;
+        }
+
+        td a {
+            text-decoration: none;
+            color: #6272a4;
+            font-weight: bold;
+        }
+
+        td a:hover {
+            color: #ff79c6;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #44475a;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #ff5555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Projects</h1>
+        <div id="projects-container">
+            <!-- Projects table will be inserted here -->
+        </div>
+        <a href="home.html" class="back-link">← ../home</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("projects.csv")
+                .then(response => response.text())
+                .then(data => {
+                    const rows = data.trim().split("\n").map(row => row.split(","));
+                    let tableHTML = `<table>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                        </tr>`;
+                    for (let i = 1; i < rows.length; i++) { // Skip header row
+                        let [name, link, description] = rows[i];
+                        if (name && link && description) {
+                            tableHTML += `<tr>
+                                            <td><a href="${link.trim()}" target="_blank">${name.trim()}</a></td>
+                                            <td>${description.trim()}</td>
+                                          </tr>`;
+                        }
+                    }
+                    tableHTML += `</table>`;
+                    document.getElementById("projects-container").innerHTML = tableHTML;
+                })
+                .catch(error => console.error("Error loading projects:", error));
+        });
+    </script>
+</body>
+</html>
+
