@@ -128,32 +128,18 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Links</th>
+                                <th>Link</th>
                             </tr>`;
-          
           for (let i = 1; i < rows.length; i++) { // Skip header row
-            let row = rows[i];
-            let name = row[0].trim();
-            let description = row[1].trim();
-            let linksHTML = '';
-
-            // Process the text-link pairs dynamically
-            for (let j = 2; j < row.length; j += 2) { // Step by 2 to get text and link pairs
-              let text = row[j].trim();
-              let link = row[j + 1] ? row[j + 1].trim() : '';
-              if (text && link) {
-                linksHTML += `<a href="${link}" target="_blank">${text}</a> `;
-              }
+            let [name, link, description] = rows[i];
+            if (name && link && description) {
+              tableHTML += `<tr>
+                              <td><a href="${link.trim()}" target="_blank">${name.trim()}</a></td>
+                              <td>${description.trim()}</td>
+                              <td><a href="${link.trim()}" target="_blank">Visit Project</a></td>
+                            </tr>`;
             }
-
-            // Add a new row for each project
-            tableHTML += `<tr>
-                            <td>${name}</td>
-                            <td>${description}</td>
-                            <td>${linksHTML}</td>
-                          </tr>`;
           }
-
           tableHTML += `</table>`;
           document.getElementById("projects-container").innerHTML = tableHTML;
         })
