@@ -34,40 +34,8 @@
       margin-bottom: 10px;
     }
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #44475a;
-    }
- 
-    th {
-      background-color: #44475a;
-      color: #f8f8f2;
-    }
- 
-    td a {
-      text-decoration: none;
-      color: #6272a4;
-      font-weight: bold;
-    }
-
-    td a:hover {
-      color: #ff79c6;
-    }
-
     p {
       max-width: 800px;
-      text-align: center;
       line-height: 1.6;
     }
 
@@ -84,6 +52,25 @@
     .back-link {
       margin-top: 30px;
       font-size: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
     }
 
     @media screen and (max-width: 480px) {
@@ -117,44 +104,47 @@
       - Winner of the μLearn illuμnate CTF 2024. <br>
     </p>
 
+    <!-- Projects Section -->
     <div class="container">
-        <h1>Projects</h1>
-        <div id="projects-container">
-            <!-- Projects table will be inserted here -->
-        </div>
+      <h2>Projects</h2>
+      <div id="projects-container">
+        <!-- Projects table will be inserted here -->
+      </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch("projects.csv")
-                .then(response => response.text())
-                .then(data => {
-                    const rows = data.trim().split("\n").map(row => row.split(","));
-                    let tableHTML = `<table>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                        </tr>`;
-                    for (let i = 1; i < rows.length; i++) { // Skip header row
-                        let [name, link, description] = rows[i];
-                        if (name && link && description) {
-                            tableHTML += `<tr>
-                                            <td><a href="${link.trim()}" target="_blank">${name.trim()}</a></td>
-                                            <td>${description.trim()}</td>
-                                          </tr>`;
-                        }
-                    }
-                    tableHTML += `</table>`;
-                    document.getElementById("projects-container").innerHTML = tableHTML;
-                })
-                .catch(error => console.error("Error loading projects:", error));
-        });
-    </script>
 
     <!-- Back Link -->
     <div class="back-link">
       <a href="index.html">&larr; ../home</a>
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("projects.csv")
+        .then(response => response.text())
+        .then(data => {
+          const rows = data.trim().split("\n").map(row => row.split(","));
+          let tableHTML = `<table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Link</th>
+                            </tr>`;
+          for (let i = 1; i < rows.length; i++) { // Skip header row
+            let [name, link, description] = rows[i];
+            if (name && link && description) {
+              tableHTML += `<tr>
+                              <td><a href="${link.trim()}" target="_blank">${name.trim()}</a></td>
+                              <td>${description.trim()}</td>
+                              <td><a href="${link.trim()}" target="_blank">Visit Project</a></td>
+                            </tr>`;
+            }
+          }
+          tableHTML += `</table>`;
+          document.getElementById("projects-container").innerHTML = tableHTML;
+        })
+        .catch(error => console.error("Error loading projects:", error));
+    });
+  </script>
 </body>
 </html>
